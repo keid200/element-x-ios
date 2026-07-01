@@ -97,6 +97,10 @@ class AppLockFlowCoordinator: CoordinatorProtocol {
         self.navigationCoordinator = navigationCoordinator
         self.appSettings = appSettings
         
+#if targetEnvironment(simulator)
+        appLockService.disable()
+#endif
+
         // Set the initial state and start with the placeholder screen as the root view.
         stateMachine = .init(state: initialState)
         configureStateMachine()
