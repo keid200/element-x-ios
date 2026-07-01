@@ -68,6 +68,7 @@ include:
 - path: UITests/SupportingFiles/target.yml
 - path: IntegrationTests/SupportingFiles/target.yml
 - path: AccessibilityTests/SupportingFiles/target.yml
+- path: Variants/Silent/silent.yml
 # - path: MyAppVariant/override.yml
 
 packages:

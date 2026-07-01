@@ -1,0 +1,28 @@
+settings:
+  APP_DISPLAY_NAME: Silent
+  PRODUCTION_APP_NAME: Silent
+  APP_GROUP_IDENTIFIER: group.com.cybershieldits.silent
+  BASE_BUNDLE_IDENTIFIER: com.cybershieldits.silent
+  ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: "colors/silent-accent-color"
+  DEVELOPMENT_TEAM: YOUR_TEAM_ID
+
+  CLASSIC_APP_GROUP_IDENTIFIER: group.com.cybershieldits.silent.classic
+  CLASSIC_APP_KEYCHAIN_ACCESS_GROUP_IDENTIFIER: "$(DEVELOPMENT_TEAM).com.cybershieldits.silent.classic"
+  CLASSIC_APP_DEEP_LINK_URL: "silent://open"
+
+targets:
+  ElementX:
+    entitlements:
+      properties:
+        com.apple.developer.associated-domains:
+        - applinks:chat.cybershieldits.com
+        - applinks:matrix.cybershieldits.com
+        - applinks:account.cybershieldits.com
+        - applinks:cybershieldits.com
+        - webcredentials:chat.cybershieldits.com
+        - webcredentials:account.cybershieldits.com
+    settings:
+      base:
+        ASSETCATALOG_COMPILER_APPICON_NAME: SilentAppIcon
+    sources:
+    - path: Resources
