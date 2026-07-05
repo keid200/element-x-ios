@@ -18,6 +18,7 @@ struct SpacesScreenCoordinatorParameters {
 
 enum SpacesScreenCoordinatorAction {
     case selectSpace(SpaceRoomListProxyProtocol)
+    case selectRoom(roomID: String)
     case showSettings
     case showCreateSpace
 }
@@ -50,6 +51,8 @@ final class SpacesScreenCoordinator: CoordinatorProtocol {
             switch action {
             case .selectSpace(let spaceRoomListProxy):
                 actionsSubject.send(.selectSpace(spaceRoomListProxy))
+            case .selectRoom(let roomID):
+                actionsSubject.send(.selectRoom(roomID: roomID))
             case .showSettings:
                 actionsSubject.send(.showSettings)
             case .showCreateSpace:
