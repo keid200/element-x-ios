@@ -216,6 +216,26 @@ class CallScreenViewModel: CallScreenViewModelType, CallScreenViewModelProtocol 
         let isEarpiece = deviceID == Self.earpieceID
         MXLog.info("Is earpiece: \(isEarpiece)")
         UIDevice.current.isProximityMonitoringEnabled = isEarpiece
+        routeCallAudioOutput(toEarpiece: isEarpiece)
+        Task { await updateOutputsListOnWeb() }
+    }
+
+    private func routeCallAudioOutput(toEarpiece: Bool) {
+        let audioSession = AVAudioSession.sharedInstance()
+
+        do {
+            if toEarpiece {
+                var options = audioSession.categoryOptions
+                options.remove(.defaultToSpeaker)
+
+                try audioSession.setCategory(.playAndRecord, mode: .voiceChat, options: options)
+                try audioSession.overrideOutputAudioPort(.none)
+            } else {
+                try audioSession.overrideOutputAudioPort(.speaker)
+            }
+        } catch {
+            MXLog.error("Failed routing call audio output to \(toEarpiece ? "earpiece" : "speaker"): \(error)")
+        }
     }
     
     private func handleBackwardsNavigation() async {
